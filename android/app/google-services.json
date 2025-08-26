@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "901033106093",
+    "project_id": "stateful-ai",
+    "storage_bucket": "stateful-ai.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:901033106093:android:87635f6e92cd222a2f0424",
+        "android_client_info": {
+          "package_name": "com.project.stateful_ai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "901033106093-i8q1mfr9enssiv5cli3ccfv88temr9dr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.project.stateful_ai",
+            "certificate_hash": "afe9c3ac1467000cb7ff426fe86029ca545c0c06"
+          }
+        },
+        {
+          "client_id": "901033106093-79smk6b2dgddvhoi6dkb94s0bijc79al.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPfit0Dp6vPcsutsKJwCTJQcg2GDoRm7A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "901033106093-79smk6b2dgddvhoi6dkb94s0bijc79al.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
