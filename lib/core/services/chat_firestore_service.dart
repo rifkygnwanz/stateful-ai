@@ -17,7 +17,7 @@ class ChatFirestoreService {
     required String modelKey,
     required String text,
     required bool isUser,
-    Uint8List? localImage, // 👈 ini
+    Uint8List? localImage,
   }) async {
     final user = _auth.currentUser;
     if (user == null) return;
