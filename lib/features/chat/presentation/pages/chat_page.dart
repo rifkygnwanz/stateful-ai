@@ -2,12 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:stateful_ai/core/enum/chat_model.dart';
-import 'package:stateful_ai/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:stateful_ai/features/chat/presentation/cubit/model_switch_cubit.dart';
+import 'package:stateful_ai/features/chat/presentation/widgets/chat_appbar.dart';
 import 'package:stateful_ai/features/chat/presentation/widgets/chat_bubble.dart';
+import 'package:stateful_ai/features/chat/presentation/widgets/chat_drawer.dart';
 import 'package:stateful_ai/features/chat/presentation/widgets/chat_input.dart';
-import 'package:stateful_ai/config/theme/cubit/theme_cubit.dart';
 import '../bloc/chat_bloc.dart';
 
 class ChatPage extends StatefulWidget {
@@ -70,44 +68,10 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) {
-    final currentModel = context.watch<ModelSwitchCubit>().state;
-
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      appBar: AppBar(
-        title: const Text('Stateful AI'),
-        actions: [
-          DropdownButton<ChatModelType>(
-            value: currentModel,
-            underline: const SizedBox(),
-            onChanged: (newModel) {
-              if (newModel != null && newModel != currentModel) {
-                context.read<ModelSwitchCubit>().switchModel(newModel);
-              }
-            },
-            items:
-                ChatModelType.values
-                    .map((e) => DropdownMenuItem(value: e, child: Text(e.name)))
-                    .toList(),
-          ),
-          IconButton(
-            icon: Icon(
-              Theme.of(context).brightness == Brightness.dark
-                  ? Icons.light_mode
-                  : Icons.dark_mode,
-            ),
-            onPressed: () {
-              context.read<ThemeCubit>().toggleTheme();
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () {
-              context.read<AuthBloc>().add(LogoutEvent());
-            },
-          ),
-        ],
-      ),
+      endDrawer: ChatDrawer(),
+      appBar: ChatAppBar(),
       body: SafeArea(
         child: Column(
           children: [

@@ -47,8 +47,8 @@ class _ChatBubbleState extends State<ChatBubble> {
       padding: EdgeInsets.fromLTRB(
         widget.isUser ? 64 : 16,
         8,
-        widget.isUser ? 16 : 64,
-        4,
+        widget.isUser ? 16 : 16,
+        16,
       ),
       child: Column(
         crossAxisAlignment:
@@ -56,13 +56,13 @@ class _ChatBubbleState extends State<ChatBubble> {
         children: [
           Container(
             decoration: BoxDecoration(
-              color:
-                  widget.isUser
-                      ? colorScheme.primary
-                      : colorScheme.surfaceContainerHighest,
+              color: widget.isUser ? colorScheme.primary : null,
               borderRadius: BorderRadius.circular(16),
             ),
-            padding: const EdgeInsets.all(12),
+            padding:
+                widget.isUser
+                    ? const EdgeInsets.symmetric(horizontal: 12, vertical: 8)
+                    : null,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -141,24 +141,37 @@ class _ChatBubbleState extends State<ChatBubble> {
               ],
             ),
           ),
-          if (!widget.isLoading)
+          if (!widget.isLoading && !widget.isUser)
             Padding(
-              padding: const EdgeInsets.only(top: 4),
-              child: GestureDetector(
-                onTap: _handleCopy,
-                child: AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 300),
-                  transitionBuilder:
-                      (child, animation) =>
-                          ScaleTransition(scale: animation, child: child),
-                  child: Icon(
-                    _copied ? Icons.check : Icons.copy,
-                    key: ValueKey(_copied),
-                    size: 16,
-                    // ignore: deprecated_member_use
-                    color: colorScheme.onSurface.withOpacity(0.6),
+              padding: const EdgeInsets.only(top: 16),
+              child: Row(
+                children: [
+                  GestureDetector(
+                    onTap: _handleCopy,
+                    child: AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 300),
+                      transitionBuilder:
+                          (child, animation) =>
+                              ScaleTransition(scale: animation, child: child),
+                      child: Icon(
+                        _copied ? Icons.check : Icons.copy,
+                        key: ValueKey(_copied),
+                        size: 16,
+                        // ignore: deprecated_member_use
+                        color: colorScheme.onSurface.withOpacity(0.6),
+                      ),
+                    ),
                   ),
-                ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Text(
+                      '${DateTime.now().hour}:${DateTime.now().minute} WIB',
+                      style: TextStyle(
+                        color: colorScheme.onSurface.withOpacity(0.6),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
         ],

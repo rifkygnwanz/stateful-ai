@@ -24,6 +24,7 @@ dependencies:
   image_picker: ^1.1.2
   flutter_markdown: ^0.7.7+1
   url_launcher: ^6.3.1
+  flutter_svg: ^2.2.1
 
 dev_dependencies:
   flutter_test:
@@ -31,7 +32,28 @@ dev_dependencies:
   flutter_lints: ^5.0.0
 
 flutter:
+  uses-material-design: true
   assets:
     - .env
+    - assets/
+    - assets/images/
+    - assets/images/svgs/
+    - assets/images/pngs/
 
-  uses-material-design: true
+  # fonts:
+  #   - family: PlusJakartaSans
+  #     fonts:
+  #       - asset: assets/fonts/plus_jakarta_sans/PlusJakartaSans-ExtraLight.ttf
+  #         weight: 200
+  #       - asset: assets/fonts/plus_jakarta_sans/PlusJakartaSans-Light.ttf
+  #         weight: 300
+  #       - asset: assets/fonts/plus_jakarta_sans/PlusJakartaSans-Regular.ttf
+  #         weight: 400
+  #       - asset: assets/fonts/plus_jakarta_sans/PlusJakartaSans-Medium.ttf
+  #         weight: 500
+  #       - asset: assets/fonts/plus_jakarta_sans/PlusJakartaSans-SemiBold.ttf
+  #         weight: 600
+  #       - asset: assets/fonts/plus_jakarta_sans/PlusJakartaSans-Bold.ttf
+  #         weight: 700
+  #       - asset: assets/fonts/plus_jakarta_sans/PlusJakartaSans-ExtraBold.ttf
+  #         weight: 800

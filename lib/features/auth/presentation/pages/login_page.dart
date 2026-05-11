@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:stateful_ai/widget/button/rounded_button.dart';
+import 'package:stateful_ai/widget/logo/logo_widget.dart';
+import 'package:stateful_ai/widget/svg/svg_ui.dart';
 import '../bloc/auth_bloc.dart';
 
 class LoginPage extends StatelessWidget {
@@ -8,7 +11,6 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Login')),
       body: Center(
         child: BlocConsumer<AuthBloc, AuthState>(
           listener: (context, state) {
@@ -22,12 +24,36 @@ class LoginPage extends StatelessWidget {
             if (state is AuthLoading) {
               return const CircularProgressIndicator();
             }
-            return ElevatedButton.icon(
-              icon: const Icon(Icons.login),
-              label: const Text('Login dengan Google'),
-              onPressed: () {
-                context.read<AuthBloc>().add(LoginWithGoogleEvent());
-              },
+            return Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  LogoWidget(),
+                  Column(
+                    children: [
+                      RoundedButton(
+                        icon: const SvgUI('ic_google.svg'),
+                        label: 'Login dengan Google',
+                        onPressed: () {
+                          context.read<AuthBloc>().add(LoginWithGoogleEvent());
+                        },
+                      ),
+                      const SizedBox(height: 12),
+                      RoundedButton(
+                        icon: SvgUI(
+                          Theme.of(context).brightness == Brightness.dark
+                              ? 'ic_apple.svg'
+                              : 'ic_apple_white.svg',
+                        ),
+                        label: 'Login dengan Apple',
+                        invertOnDark: true,
+                        onPressed: () {},
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             );
           },
         ),

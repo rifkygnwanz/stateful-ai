@@ -83,9 +83,11 @@ class _ChatInputState extends State<ChatInput> {
                   controller: _controller,
                   textInputAction: TextInputAction.send,
                   onSubmitted: (_) => _send(),
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     hintText: 'Ketik pesan...',
-                    border: OutlineInputBorder(),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
                   ),
                 ),
               ),
